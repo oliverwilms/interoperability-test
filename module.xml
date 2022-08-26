@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="interoperability-sample.ZPM">
+  <Document name="interoperability-test.ZPM">
     <Module>
-      <Name>interoperability-sample</Name>
+      <Name>interoperability-test</Name>
       <Description>A simple IRIS interoperability application - reads data from Reddit and filter it.</Description>
       <Version>0.0.10</Version>
       <Packaging>module</Packaging>
