@@ -59,3 +59,23 @@ Method CheckResults(ByRef Log As %String, New As %String) As %Status
 	Set tSC = $$$OK
 	Quit tSC
 }
+
+/// Override this method if you are going to check errors with custom code.
+/// It's automatically invoked when parameter <parameter>IGNOREPRODUCTIONERRORS</parameter> = 1.
+Method CheckErrors() As %Status
+{
+	Do ..DebugTEST("CheckErrors")
+	// GetEventLog types are "error", "info", "infouser", "trace", "alert"
+	Set s = ..GetEventLog("error", "", ..BaseLogId, .err, .new) // Retrieve all records of type "Error"
+	Do ..DebugMerge("err",.err)
+	Do ..DebugTEST("new = "_$Get(new))
+	Set (s1,s2) = $$$AssertEquals(new,0,"Should be 0 new errors(found: "_+$Get(new)_")")
+	Set text = $Get(err(1,"Text"))
+	Set eText = "Test error case"
+	//Set s2 = $$$AssertTrue(text[eText,"Should contain '"_eText_"'(found: '"_text_"')")
+	//Set tSC = ##class(Feeder.Test).UpdateMyProp("","myErrCount",$Get(new))
+	If 's1||'s2 Set tSC=..Error("Expected error entries don't match")
+	Quit tSC
+}
+
+}
