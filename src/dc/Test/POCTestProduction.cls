@@ -36,6 +36,13 @@ ClassMethod DebugStatus(pStatus As %Status) As %Status
 	Quit ..DebugTEST(tStatus)
 }
 
+/// Can set up a test environment
+Method OnBeforeAllTests() As %Status
+{
+	Do ..DebugTEST("OnBeforeAllTests")
+	Quit $$$OK
+}
+
 /// Code to run right before the production is started.  This is useful to:<br>
 /// <ul><li>Adjust settings - see method <method>ChangeSetting</method>.</li>
 /// <li>Create directories - see method <method>CreateMainDirTree</method>.</li>
