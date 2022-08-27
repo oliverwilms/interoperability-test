@@ -1,9 +1,10 @@
 version: '3.6'
 services:
   iris:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+#    build: 
+#      context: .
+#      dockerfile: Dockerfile
+    image: testint
     restart: always
     command: --check-caps false
     ports: 
