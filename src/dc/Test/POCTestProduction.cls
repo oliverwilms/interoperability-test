@@ -75,6 +75,10 @@ Method OnBeforeProductionStart() As %Status
 		Set pValue = pMainDir
 		Set tSC = ..ChangeSetting(pProduction,pItem,pSettingName,pValue)
 	}
+	Set pFilename = "123_GetInternalCustomerCatalog_20220827095512345.csv"
+	Set pSourceDir = $ZU(12)_"data/"
+	Set pTargetDir = $ZU(12)_"test/"
+	Set tSC = ..CopyFile(pFilename,pSourceDir,pTargetDir)
 	Quit tSC
 	Set boolFound = ##class(Ens.Config.DefaultSettings).%GetSetting(pProduction,pItem,pHostClassName,pTargetType,pSettingName,.pValue)
 	If (boolFound = 0) {
