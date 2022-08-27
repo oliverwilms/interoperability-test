@@ -61,16 +61,30 @@ Method OnBeforeAllTests() As %Status
 /// So if a non fatal error occurs, you may invoke ..LogErrors(status,"OnBeforeProductionStart()") and return $$$OK.
 Method OnBeforeProductionStart() As %Status
 {
-	Set pProductionName = ..#PRODUCTION
-	Set pItemName = "File Passthrough Service"
+	Set pMainDir = $ZU(12)_"test"
+	Set tExists = ##class(%File).DirectoryExists(pMainDir)
+	If (tExists = 0) Set tSC = ##class(%File).CreateDirectory(pMainDir)
+	Set pProduction = ..#PRODUCTION
+	Set pItem = "File Passthrough Service"
 	Set pHostClassName = "*"
+	Set pTargetType = ""
 	Set pSettingName = "FilePath"
-	//Set x = ##class(Ens.Config.DefaultSettings).%GetSetting(pProductionName,pItemName,pHostClassName)
-	Set pItemName = "*"
+	Set tSC = ..GetSetting(pProduction,pItem,pSettingName,.pValue)
+	Write "pValue = ",$Get(pValue),!
+	If ($Get(pValue) = "") {
+		Set pValue = pMainDir
+		Set tSC = ..ChangeSetting(pProduction,pItem,pSettingName,pValue)
+	}
+	Quit tSC
+	Set boolFound = ##class(Ens.Config.DefaultSettings).%GetSetting(pProduction,pItem,pHostClassName,pTargetType,pSettingName,.pValue)
+	If (boolFound = 0) {
+		
+	}
+	Set pItem = "*"
 	Set pHostClassName = "dc.Demo.EmailOperation"
 	Set pTargetType = ""
 	Set pSettingName = "SMTPServer"
-	Set boolFound = ##class(Ens.Config.DefaultSettings).%GetSetting(pProductionName,pItemName,pHostClassName,pTargetType,pSettingName,.pValue)
+	Set boolFound = ##class(Ens.Config.DefaultSettings).%GetSetting(pProduction,pItem,pHostClassName,pTargetType,pSettingName,.pValue)
 	Write "boolFound = ",boolFound,!
 	Write "pValue = ",$Get(pValue),!
 	Quit $$$OK
