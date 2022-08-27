@@ -45,4 +45,17 @@ Method OnAfterProductionStart() As %Status
 	Quit $$$OK
 }
 
+/// Fill in with code to check the results for the production execution.<br>
+/// This method is initialized with a local array containing user created entries of type "Info" from the Event Log, 
+/// not including the start production/components entries, with the following contents:<br>
+///   <b>Log</b> = last existing seq for array <b>Log()</b> <br>
+///   <b>Log(seq, fieldname)</b> = fieldvalue<br>
+/// To get other entries from the Event Log, or for more information about the array contents,
+/// see method <method>GetEventLog</method>. <br>
+/// Return $$$OK in most cases, or an error status if you want to indicate that there was a failure.  Remember 
+/// that failures are automatic when unit test macros are used.<br>
+Method CheckResults(ByRef Log As %String, New As %String) As %Status
+{
+	Set tSC = $$$OK
+	Quit tSC
 }
