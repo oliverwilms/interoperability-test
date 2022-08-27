@@ -9,6 +9,14 @@ Parameter PRODUCTION = "dc.Demo.Production";
 /// You may also want to check them manually by overriding the method <method>CheckErrors</method>.
 Parameter IGNOREPRODUCTIONERRORS = 1;  // 1 because I want to execute method <method>CheckErrors</method>.
 
+ClassMethod Go() As %Status
+{
+	If ($Data(^UnitTestRoot) = 0) Set ^UnitTestRoot = ""
+	Set tSC = ..Run()
+	Quit tSC
+}
+
+
 ClassMethod DebugMerge(strMessage As %String = "", ByRef pArray) As %Status
 {
 	Merge ^TESTunit($I(^TESTunit)) = pArray
