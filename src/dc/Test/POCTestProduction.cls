@@ -61,6 +61,18 @@ Method OnBeforeAllTests() As %Status
 /// So if a non fatal error occurs, you may invoke ..LogErrors(status,"OnBeforeProductionStart()") and return $$$OK.
 Method OnBeforeProductionStart() As %Status
 {
+	Set pProductionName = ..#PRODUCTION
+	Set pItemName = "File Passthrough Service"
+	Set pHostClassName = "*"
+	Set pSettingName = "FilePath"
+	//Set x = ##class(Ens.Config.DefaultSettings).%GetSetting(pProductionName,pItemName,pHostClassName)
+	Set pItemName = "*"
+	Set pHostClassName = "dc.Demo.EmailOperation"
+	Set pTargetType = ""
+	Set pSettingName = "SMTPServer"
+	Set boolFound = ##class(Ens.Config.DefaultSettings).%GetSetting(pProductionName,pItemName,pHostClassName,pTargetType,pSettingName,.pValue)
+	Write "boolFound = ",boolFound,!
+	Write "pValue = ",$Get(pValue),!
 	Quit $$$OK
 }
 
