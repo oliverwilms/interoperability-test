@@ -11,7 +11,7 @@ Parameter IGNOREPRODUCTIONERRORS = 1;  // 1 because I want to execute method <me
 
 ClassMethod Go() As %Status
 {
-	If ($Data(^UnitTestRoot) = 0) Set ^UnitTestRoot = ""
+	If ($Data(^UnitTestRoot) = 0) Set ^UnitTestRoot = $ZU(12)
 	Set tSC = ..Run()
 	Quit tSC
 }
