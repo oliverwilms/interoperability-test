@@ -18,6 +18,7 @@
       <Resource Name="dc.Reddit.PKG"/>
       <Resource Name="dc.Demo.PKG"/>
       <Resource Name="dc.POC.PKG"/>
+      <Resource Name="dc.Test.PKG"/>
       <FileCopy Name="data/" Target="${mgrdir}data/"/>
       <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
     </Module>
