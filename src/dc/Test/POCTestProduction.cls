@@ -9,6 +9,19 @@ Parameter PRODUCTION = "dc.Demo.Production";
 /// You may also want to check them manually by overriding the method <method>CheckErrors</method>.
 Parameter IGNOREPRODUCTIONERRORS = 1;  // 1 because I want to execute method <method>CheckErrors</method>.
 
+/// Code to run right before the production is started.  This is useful to:<br>
+/// <ul><li>Adjust settings - see method <method>ChangeSetting</method>.</li>
+/// <li>Create directories - see method <method>CreateMainDirTree</method>.</li>
+/// <li>Copy files - see method <method>CopyFile</method>.</li>
+/// <li>Create credentials required by the production - see method <method>CreateCredentials</method>.</li>
+/// <li>etc.</li></ul>
+/// If an error status is returned, the test will be aborted and failed.
+/// So if a non fatal error occurs, you may invoke ..LogErrors(status,"OnBeforeProductionStart()") and return $$$OK.
+Method OnBeforeProductionStart() As %Status
+{
+	Quit $$$OK
+}
+
 /// Code to run right after the production is started. Used, for example, to call a method that initiates the test.
 /// If an error status is returned, the test will be aborted and failed and the production will be stopped.
 /// So if a non fatal error occurs, you may invoke ..LogErrors(status,"OnAfterProductionStart()") and return $$$OK.
