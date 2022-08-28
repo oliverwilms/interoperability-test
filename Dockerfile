@@ -6,7 +6,7 @@ WORKDIR /home/irisowner/irisbuild
 
 #COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} . .
 
-ARG TESTS=1
+ARG TESTS=0
 ARG MODULE="interoperability-test"
 ARG NAMESPACE="USER"
 
