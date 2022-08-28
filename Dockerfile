@@ -5,6 +5,7 @@ FROM $IMAGE
 WORKDIR /home/irisowner/irisbuild
 
 #COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} . .
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} tests tests
 
 ARG TESTS=0
 ARG MODULE="interoperability-test"
