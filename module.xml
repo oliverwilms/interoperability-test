@@ -22,8 +22,8 @@
       <FileCopy Name="data/" Target="${mgrdir}data/"/>
       <FileCopy Name="output/" Target="${mgrdir}output/"/>
       <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
-      <UnitTest Name="/tests/unit_tests/" Package="Test.PM.Unit" Phase="test"/>
-      <UnitTest Name="/tests/integration_tests/" Package="Test.PM.Integration" Phase="verify"/>
+      <UnitTest Name="/tests/dc/Test/" Package="dc" Phase="test"/>
+      <UnitTest Name="/tests/dc/Test/" Package="dc.Test" Phase="verify"/>
     </Module>
   </Document>
 </Export>
