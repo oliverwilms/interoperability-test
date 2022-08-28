@@ -11,7 +11,7 @@ ERROR: Service 'iris' failed to build : Build failed
 ```
 ## Workaround
 ```
-DOCKER_BUILDKIT=1 sudo docker build --tag testint .
+DOCKER_BUILDKIT=1 sudo docker build --no-cache --progress=plain --tag testint .
 ```
 ## What The Sample Does
 
