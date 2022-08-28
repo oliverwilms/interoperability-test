@@ -31,6 +31,8 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="Charset">utf-8</Setting>
     <Setting Target="Adapter" Name="FilePath">/irisdev/app/output/</Setting>
   </Item>
+  <Item Name="POCAuthRequestToDMLSS123" Category="" ClassName="EnsLib.REST.GenericOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
 </Production>
 }
 
