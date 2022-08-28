@@ -10,7 +10,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 </Routes>
 }
 
-ClassMethod CheckStatus() As %Status
+ClassMethod GetAuthtoken() As %Status
 {
       Try {
           Set ^DEBUG($Increment(^DEBUG))="REST"
