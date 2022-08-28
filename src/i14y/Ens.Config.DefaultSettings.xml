@@ -3,5 +3,6 @@
 <Document name="Ens.Config.DefaultSettings.ESD">
 <defaultSettings>
 <item production="dc.Demo.Production" item="*" class="dc.Demo.EmailOperation" setting="SMTPServer" value="smtp.myemailserver.com"><Deployable>true</Deployable></item>
+<item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericOperation" setting="HTTPServer" value="127.0.0.1"><Deployable>true</Deployable></item>
 </defaultSettings>
 </Document></Export>
