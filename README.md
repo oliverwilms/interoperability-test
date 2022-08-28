@@ -51,7 +51,13 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
+## How to Run UnitTest
 
+```
+$ docker-compose up -d
+sudo docker exec -it interoperability-test_iris_1 iris session iris
+zpm "test interoperability-test -only -v"
+```
 
 ## How to Run the Sample
 
