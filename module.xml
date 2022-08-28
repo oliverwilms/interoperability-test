@@ -22,7 +22,7 @@
       <FileCopy Name="data/" Target="${mgrdir}data/"/>
       <FileCopy Name="output/" Target="${mgrdir}output/"/>
       <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
-      <UnitTest Name="/tests/dc/Test/" Package="dc" Phase="test"/>
+      <UnitTest Name="/tests/" Package="dc.Test" Phase="test"/>
       <!--UnitTest Name="/tests/dc/Test/" Package="dc.Test" Phase="verify"/-->
     </Module>
   </Document>
