@@ -6,9 +6,11 @@ I started from iris-interoperability-template. It contained a simple interoperab
 
 ## Error encountered
 the --mount option requires BuildKit. Refer to https://docs.docker.com/go/buildkit/ to learn how to build images with BuildKit enabled
+
 ERROR: Service 'iris' failed to build : Build failed
 
 ## Workaround
+DOCKER_BUILDKIT=1 sudo docker build --tag testint .
 
 ## What The Sample Does
 
