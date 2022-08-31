@@ -20,7 +20,7 @@ ClassMethod GetSiteID(pRequest As Ens.Request = "") As %String
 	Set ^DEBUG($I(^DEBUG)) = pRequest
 	If pRequest.%IsA("Ens.StreamContainer") {
 		#DIM pRequest2 As Ens.StreamContainer
-		Set temp = pRequest.OriginalFilename
+		Set temp = $TRANSLATE(pRequest.OriginalFilename,"\","/")
 		Set tLen = $Length(temp,"/")
 		Set tFnam = $P($Piece(temp,"/",tLen),"_",1)
 		Set tSiteID = tFnam
