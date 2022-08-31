@@ -7,6 +7,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
       <Route Url="/Auth/GetAuthtoken" Method="GET" Call="GetAuthtoken" Cors="true"/>
+      <Route Url="/Auth/GetAuthtoken" Method="POST" Call="GetAuthtoken" Cors="true"/>
 </Routes>
 }
 
