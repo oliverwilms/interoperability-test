@@ -3,6 +3,11 @@
 Class dc.POC.ProcessPOCFileRequest Extends Ens.BusinessProcessBPL
 {
 
+Storage Default
+{
+<Type>%Storage.Persistent</Type>
+}
+
 /// BPL Definition
 XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 {
@@ -71,7 +76,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </parameters>
 </property>
 </context>
-<sequence xend='200' yend='3700' >
+<sequence xend='200' yend='3450' >
 <assign name="TransactionType" property="context.TransactionType" value="##class(dc.POC.ProcessPOCHelper).GetTransactionType(request)" action="set" xpos='200' ypos='250' />
 <assign name="Source Name" property="context.SourceName" value="process.%PrimaryRequestHeader.SourceConfigName" action="set" xpos='200' ypos='350' />
 <trace name='URL - Transaction Type' value='context.TransactionType_","_context.SourceName' xpos='200' ypos='450' />
@@ -80,7 +85,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign name="Response File Operation" property="context.ResponseFileOperation" value="&quot;POCResponseFile&quot;_context.SiteID" action="set" xpos='200' ypos='750' />
 <assign name="Site Auth Operation" property="context.SiteAuthOperation" value="&quot;POCAuthRequestToDMLSS&quot;_context.SiteID" action="set" xpos='200' ypos='850' />
 <trace name='Site ID' value='context.SiteID' xpos='200' ypos='950' />
-<if name='Check request stream length' condition='(request.Stream.SizeGet() = 0) || (context.SiteID="")' xpos='200' ypos='1050' xend='200' yend='3600' >
+<if name='Check request stream length' condition='(request.Stream.SizeGet() = 0) || (context.SiteID="")' xpos='200' ypos='1050' xend='200' yend='3350' >
 <true>
 <code name='Bad message handler' xpos='200' ypos='1200' >
 <![CDATA[ set tmp = ##class(%Library.GlobalBinaryStream).%New()
@@ -110,18 +115,19 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="context.AuthJSONResponse" value="callresponse" action="set" />
 </response>
 </call>
-<if name='Status Check' condition='context.AuthJSONResponse.HTTPHeaders.GetAt("StatusLine") = "HTTP/1.1 200 OK"' xpos='470' ypos='1300' xend='470' yend='3400' >
+<trace name='Auth StatusLine' value='context.AuthJSONResponse.HTTPHeaders.GetAt("StatusLine")' xpos='470' ypos='1300' />
+<if name='Status Check' condition='context.AuthJSONResponse.HTTPHeaders.GetAt("StatusLine") = "HTTP/1.1 200 OK"' xpos='470' ypos='1400' xend='470' yend='3150' >
 <true>
-<code name='Prepare auth header' xpos='740' ypos='1450' >
+<code name='Prepare auth header' xpos='740' ypos='1550' >
 <![CDATA[ set DynOBJ={}.%FromJSON(context.AuthJSONStream)
  set tTokenType=DynOBJ."token_type"
  set tAccessToken=DynOBJ."access_token"
  set context.AuthToken=tTokenType_" "_tAccessToken]]>
 </code>
-<switch name='Transaction Type' xpos='740' ypos='1550' xend='740' yend='2100' >
+<switch name='Transaction Type' xpos='740' ypos='1650' xend='740' yend='2200' >
 <case condition='context.TransactionType [ "GetShipmentStatus"' name='GetShipmentStatus' >
-<transform name='DTL for Shipment Status' class='dc.POC.DTL.FilePOCShipmentStatus' source='request' target='context.JSONRequest' xpos='1010' ypos='1700' />
-<call name='Shipment Status to DMLSS' target='@context.SiteOperation' async='0' xpos='1010' ypos='1800' >
+<transform name='DTL for Shipment Status' class='dc.POC.DTL.FilePOCShipmentStatus' source='request' target='context.JSONRequest' xpos='1010' ypos='1800' />
+<call name='Shipment Status to DMLSS' target='@context.SiteOperation' async='0' xpos='1010' ypos='1900' >
 <request type='EnsLib.HTTP.GenericMessage' >
 <assign property="tSC" value="context.ShipmentStatusRequest.HTTPHeaders.SetAt(context.AuthToken,&quot;authorization&quot;)" action="set" />
 <assign property="callrequest" value="context.JSONRequest" action="set" />
@@ -132,8 +138,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 </case>
 <case condition='context.TransactionType [ "GetInternalCustomerCatalog"' name='CatalogDelta' >
-<transform name='DTL for Catalog Delta' class='dc.POC.DTL.FilePOCDeltaReq' source='request' target='context.JSONRequest' xpos='1280' ypos='1700' />
-<call name='Delta Request to DMLSS' target='@context.SiteOperation' async='0' xpos='1280' ypos='1800' >
+<transform name='DTL for Catalog Delta' class='dc.POC.DTL.FilePOCDeltaReq' source='request' target='context.JSONRequest' xpos='1280' ypos='1800' />
+<call name='Delta Request to DMLSS' target='@context.SiteOperation' async='0' xpos='1280' ypos='1900' >
 <request type='EnsLib.HTTP.GenericMessage' >
 <assign property="tSC" value="context.JSONRequest.HTTPHeaders.SetAt(context.AuthToken,&quot;authorization&quot;)" action="set" />
 <assign property="callrequest" value="context.JSONRequest" action="set" />
@@ -144,8 +150,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 </case>
 <case condition='context.TransactionType [ "GetOrderStatus"' name='OrderStatus' >
-<transform name='DTL for Order Status' class='dc.POC.DTL.FilePOCOrderStatus' source='request' target='context.JSONRequest1' xpos='1550' ypos='1700' />
-<call name='Order Status to DMLSS' target='@context.SiteOperation' async='0' xpos='1550' ypos='1800' >
+<transform name='DTL for Order Status' class='dc.POC.DTL.FilePOCOrderStatus' source='request' target='context.JSONRequest1' xpos='1550' ypos='1800' />
+<call name='Order Status to DMLSS' target='@context.SiteOperation' async='0' xpos='1550' ypos='1900' >
 <request type='EnsLib.HTTP.GenericMessage' >
 <assign property="tSC" value="context.JSONRequest1.HTTPHeaders.SetAt(context.AuthToken,&quot;authorization&quot;)" action="set" />
 <assign property="callrequest" value="context.JSONRequest1" action="set" />
@@ -156,8 +162,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 </case>
 <case condition='context.TransactionType [ "InternalOrderRequest"' name='InternalOrderRequest' >
-<transform name='DTL for Place Order' class='dc.POC.DTL.FilePOCPlaceOrder' source='request' target='context.OrderJSONReq' xpos='1820' ypos='1700' />
-<code name='Converting to JSON' xpos='1820' ypos='1800' >
+<transform name='DTL for Place Order' class='dc.POC.DTL.FilePOCPlaceOrder' source='request' target='context.OrderJSONReq' xpos='1820' ypos='1800' />
+<code name='Converting to JSON' xpos='1820' ypos='1900' >
 <![CDATA[ //set context.JSONRequest=request.%ConstructClone()
  //set tSC= context.JSONRequest.%Save()
  set tmp = context.SiteID
@@ -186,8 +192,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
  set tSC= context.JSONRequest1.%Save()
 ]]>
 </code>
-<trace name='JSON String' value='context.CSVJSONString' xpos='1820' ypos='1900' />
-<call name='Place Order to DMLSS' target='@context.SiteOperation' async='0' xpos='1820' ypos='2000' >
+<trace name='JSON String' value='context.CSVJSONString' xpos='1820' ypos='2000' />
+<call name='Place Order to DMLSS' target='@context.SiteOperation' async='0' xpos='1820' ypos='2100' >
 <request type='EnsLib.HTTP.GenericMessage' >
 <assign property="tSC" value="context.JSONRequest1.HTTPHeaders.SetAt(context.AuthToken,&quot;authorization&quot;)" action="set" />
 <assign property="callrequest" value="context.JSONRequest1" action="set" />
@@ -198,16 +204,16 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 </case>
 <default>
-<assign name="catch all" property="response" value="0" action="set" xpos='740' ypos='1700' />
+<assign name="catch all" property="response" value="0" action="set" xpos='740' ypos='1800' />
 </default>
 </switch>
-<if name='Object Check' condition='$IsObject(context.JSONResponse)' xpos='740' ypos='2200' xend='740' yend='3300' >
+<if name='Object Check' condition='$IsObject(context.JSONResponse)' xpos='740' ypos='2300' xend='740' yend='3050' >
 <true>
-<if name='Status Check' condition='context.JSONResponse.HTTPHeaders.GetAt("StatusLine") = "HTTP/1.1 200 OK"' xpos='875' ypos='2350' xend='875' yend='3200' >
+<if name='Status Check' condition='context.JSONResponse.HTTPHeaders.GetAt("StatusLine") = "HTTP/1.1 200 OK"' xpos='875' ypos='2450' xend='875' yend='2950' >
 <true>
-<switch name='Transaction Type' xpos='1145' ypos='2500' xend='1145' yend='3100' >
+<switch name='Transaction Type' xpos='1145' ypos='2600' xend='1145' yend='2850' >
 <case condition='context.TransactionType [ "GetInternalCustomerCatalog"' name='CatalogDelta' >
-<code name='JSON Response to CSV' xpos='1280' ypos='2650' >
+<code name='JSON Response to CSV' xpos='1280' ypos='2750' >
 <![CDATA[ set tString=context.JSONResponse.Stream
  set DynOBJ={}.%FromJSON(tString)
  set tAccId=DynOBJ."CustomerAccountId"
@@ -217,6 +223,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
  set tmpH = tTransType_"|CustomerAccountId|ItemID|ShortDescription|Manufacturer|"
  set tmpH = tmpH_"ManufacturerPartNo|NDC|NSN|PackCd|PackQty|MaxOrderQty|Price|MMCId|DeltaType|"
  set tmpH = tmpH_"PreferredProductInd"
+ 
+ Set tSC = ##class(dc.POC.ProcessPOCHelper).Code(tmpH,.context)
  
  d context.JSONStream.WriteLine(tmpH)
  set delim = "|"
@@ -249,7 +257,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </code>
 </case>
 <case condition='context.TransactionType [ "GetShipmentStatus"' name='GetShipmentStatus' >
-<code name='JSON Response to CSV' xpos='1550' ypos='2650' >
+<code name='JSON Response to CSV' xpos='1550' ypos='2750' >
 <![CDATA[ set tString=context.JSONResponse.Stream
  set DynOBJ={}.%FromJSON(tString)
  set tAccId=DynOBJ."CustomerAccountId"
@@ -291,7 +299,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </code>
 </case>
 <case condition='context.TransactionType [ "GetOrderStatus"' name='OrderStatus' >
-<code name='JSON Response to CSV' xpos='1820' ypos='2650' >
+<code name='JSON Response to CSV' xpos='1820' ypos='2750' >
 <![CDATA[ set tString=context.JSONResponse.Stream
  set DynOBJ={}.%FromJSON(tString)
  set tAccId=DynOBJ."CustomerAccountId"
@@ -329,7 +337,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </code>
 </case>
 <case condition='context.TransactionType [ "InternalOrderRequest"' name='InternalOrderRequest' >
-<code name='JSON Response to CSV' xpos='2209' ypos='2637' >
+<code name='JSON Response to CSV' xpos='2090' ypos='2750' >
 <![CDATA[  set tString=context.JSONResponse.Stream
  set DynOBJ={}.%FromJSON(tString)
  set tAccId=DynOBJ."CustomerAccountId"
@@ -378,17 +386,17 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </switch>
 </true>
 <false>
-<assign name="context.JSONStream" property="context.JSONStream" value="context.JSONResponse.Stream" action="set" xpos='875' ypos='2500' />
+<assign name="context.JSONStream" property="context.JSONStream" value="context.JSONResponse.Stream" action="set" xpos='875' ypos='2600' />
 </false>
 </if>
 </true>
 </if>
 </true>
 <false>
-<assign name="response" property="response" value="context.AuthJSONResponse" action="set" xpos='470' ypos='1450' />
+<assign name="response" property="response" value="context.AuthJSONResponse" action="set" xpos='470' ypos='1550' />
 </false>
 </if>
-<call name='Write Response to file' target='@context.ResponseFileOperation' async='1' xpos='470' ypos='3500' >
+<call name='Write Response to file' target='@context.ResponseFileOperation' async='1' xpos='470' ypos='3250' >
 <request type='Ens.StreamContainer' >
 <assign property="callrequest.Stream" value="context.JSONStream" action="set" />
 <assign property="callrequest.OriginalFilename" value="##class(dc.POC.ProcessPOCHelper).GetResponseFilename(request)" action="set" />
@@ -399,11 +407,6 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </if>
 </sequence>
 </process>
-}
-
-Storage Default
-{
-<Type>%Storage.Persistent</Type>
 }
 
 }
