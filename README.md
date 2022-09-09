@@ -10,6 +10,7 @@ the --mount option requires BuildKit. Refer to https://docs.docker.com/go/buildk
 ERROR: Service 'iris' failed to build : Build failed
 ```
 ## Workaround
+My docker-compose installation did not support BuildKit. So I built the image separately and used the image in docker-compose.yaml.
 ```
 DOCKER_BUILDKIT=1 sudo docker build --no-cache --progress=plain --tag testint .
 ```
