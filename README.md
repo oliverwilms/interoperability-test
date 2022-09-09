@@ -18,6 +18,8 @@ DOCKER_BUILDKIT=1 sudo docker build --no-cache --progress=plain --tag testint .
 
 My team works on IRIS interoperability solution running on Red Hat OpenShift Kubernetes Container Platform. We are trying to implement CI/CD, but we are missing testing tool. We are making changes to our POC interfaces. I wanted to see what can be done with Unit Testing tools provided by InterSystems.
 
+We are working on POC interface. Below is a screenshot of a visual trace in Health Connect:
+![screenshot](https://github.com/oliverwilms/bilder/blob/main/TracePOCinHC.PNG)
 
 This sample has an interoperability [production](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/Production.cls) with an inbound [Reddit Adapter](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Reddit/InboundAdapter.cls) which is used by a [Business Service](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/RedditService.cls) to read data from Reddit.com.
 It reads from reddit.com/new/.json every 15 sec.
