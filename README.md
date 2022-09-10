@@ -23,7 +23,7 @@ We are working on POC interface. Below is a screenshot of a visual trace in Heal
 
 IncomingPOCFile Service reads a file and sends it to BPL process. Next step is sending an Authorization request to an external system (DMLSS). After Auth request is approved, a response file can be sent to POCResponseFile operation.
 
-We are not connected to DMLSS during build time. I decided to simulate the Authorization process. The Authorization request is sent to this Production. It is received by aa. aa sends a request to Auth BPL. Auth BPL simulates the response from DMLSS.
+We are not connected to DMLSS during build time. I decided to simulate the Authorization process. The Authorization request is sent to this Production due to System Default Settings which are shown on the screenshot below. It is received by Generic REST Service which sends a request to POC Auth BPL. POC Auth BPL simulates the response from DMLSS.
 
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/testint.PNG)
 This sample has an interoperability [production](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/Production.cls) with an inbound [Reddit Adapter](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Reddit/InboundAdapter.cls) which is used by a [Business Service](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/RedditService.cls) to read data from Reddit.com.
