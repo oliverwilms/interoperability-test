@@ -5,6 +5,9 @@
 <item production="dc.Demo.Production" item="*" class="dc.Demo.EmailOperation" setting="SMTPServer" value="smtp.myemailserver.com"><Deployable>true</Deployable></item>
 <item production="dc.Demo.Production" item="*" class="dc.Demo.FileOperation" setting="FilePath" value="/usr/irissys/mgr/output/"><Deployable>true</Deployable></item>
 <item production="dc.Demo.Production" item="*" class="EnsLib.File.PassthroughOperation" setting="FilePath" value="/usr/irissys/mgr/output/"><Deployable>true</Deployable></item>
+<item production="dc.Demo.Production" item="*" class="EnsLib.File.PassthroughService" setting="ArchivePath" value="/irisdev/app/output/"><Deployable>true</Deployable></item>
+<item production="dc.Demo.Production" item="*" class="EnsLib.File.PassthroughService" setting="FilePath" value="/irisdev/app/data/"><Deployable>true</Deployable></item>
+<item production="dc.Demo.Production" item="*" class="EnsLib.File.PassthroughService" setting="WorkPath" value="/irisdev/app/output/"><Deployable>true</Deployable></item>  
 <item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericOperation" setting="HTTPPort" value="57700"><Deployable>true</Deployable></item>
 <item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericOperation" setting="HTTPServer" value="127.0.0.1"><Deployable>true</Deployable></item>
 <item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericService" setting="Port" value="57700"><Deployable>true</Deployable></item>
