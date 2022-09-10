@@ -62,7 +62,7 @@ zpm "test interoperability-test -only -v"
 
 Open the [production](http://localhost:57700/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) and start it.
 File Passthrough Service looks for a file in /irisdev/app/data/. If found, then file content is sent to POC File BPL.
-If the process completes successfully, a response file will be semt to POC Response File Operation and we should find a file in /usr/irissys/mgr/output/.
+If the process completes successfully, a response file will be sent to POC Response File Operation and we should find a file in /usr/irissys/mgr/output/.
 
 You can view the [BPL](http://localhost:57700/csp/user/EnsPortal.BPLEditor.zen?BP=dc.POC.ProcessPOCFileRequest.bpl) 
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/interoperability-test_BPL.png)
