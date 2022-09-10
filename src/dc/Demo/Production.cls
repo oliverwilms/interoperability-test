@@ -1,9 +1,9 @@
-Class dc.demo.Production Extends Ens.Production
+Class dc.Demo.Production Extends Ens.Production
 {
 
 XData ProductionDefinition
 {
-<Production Name="dc.demo.Production" TestingEnabled="true" LogGeneralTraceEvents="true">
+<Production Name="dc.Demo.Production" TestingEnabled="true" LogGeneralTraceEvents="true">
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="File Passthrough Service" Category="" ClassName="EnsLib.File.PassthroughService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
