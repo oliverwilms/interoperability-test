@@ -26,13 +26,6 @@ IncomingPOCFile Service reads a file and sends it to BPL process. Next step is s
 We are not connected to DMLSS during build time. I decided to simulate the Authorization process. The Authorization request is sent to this Production due to System Default Settings which are shown on the screenshot below. It is received by Generic REST Service which sends a request to POC Auth BPL. POC Auth BPL simulates the response from DMLSS.
 
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/testint.PNG)
-This sample has an interoperability [production](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/Production.cls) with an inbound [Reddit Adapter](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Reddit/InboundAdapter.cls) which is used by a [Business Service](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/RedditService.cls) to read data from Reddit.com.
-It reads from reddit.com/new/.json every 15 sec.
-You can alter both the URL and frequency in the service's settings.
-<img width="1411" alt="Screenshot 2020-10-29 at 19 33 14" src="https://user-images.githubusercontent.com/2781759/97603605-a6d0af00-1a1d-11eb-99cc-481efadb0ec6.png">
-
-The production has a business process with a rule, which filters on news that mentions cats and dogs. The business process then sends this data to a business operation which either saves data to a source folder /output/Dog.txt or /output/Cat.txt.
-<img width="864" alt="Screenshot 2020-10-29 at 19 38 58" src="https://user-images.githubusercontent.com/2781759/97606568-fcf32180-1a20-11eb-90de-4257dd2cf552.png"> 
 
 ## Prerequisites
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
