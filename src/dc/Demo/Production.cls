@@ -8,8 +8,6 @@ XData ProductionDefinition
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="File Passthrough Service" Category="" ClassName="EnsLib.File.PassthroughService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="TargetConfigNames">POC File</Setting>
-    <Setting Target="Adapter" Name="ArchivePath">C:\Testdata\POC\Archive</Setting>
-    <Setting Target="Adapter" Name="WorkPath">C:\Testdata\POC\Archive</Setting>
   </Item>
   <Item Name="Generic REST Service" Category="" ClassName="EnsLib.REST.GenericService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="TargetConfigName">POC Auth</Setting>
