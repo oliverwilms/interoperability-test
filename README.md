@@ -58,10 +58,11 @@ sudo docker exec -it interoperability-test_iris_1 iris session iris
 zpm "test interoperability-test -only -v"
 ```
 
-## How to Run the Sample
+## How to Run interoperability-test
 
-Open the [production](http://localhost:52795/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) and start it.
-It will start gathering news from reddit.com/new/ and filter it on cats and dogs into /output/Dog.txt or /output/Cat.txt files.
+Open the [production](http://localhost:57700/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) and start it.
+File Passthrough Service looks for a file in /irisdev/app/data/. If found, then file content is sent to POC File BPL.
+If the process completes successfully, a response file will be semt to POC Response File Operation and we should find a file in /usr/irissys/mgr/output/.
 
-You can alter the [business rule](http://localhost:52795/csp/user/EnsPortal.RuleEditor.zen?RULE=dc.Demo.FilterPostsRoutingRule) to filter for different words, or to use an email operation to send posts via email.
-<img width="1123" alt="Screenshot 2020-10-29 at 20 05 34" src="https://user-images.githubusercontent.com/2781759/97607761-77707100-1a22-11eb-9ce8-0d14d6f6e315.png">
+You can view the [BPL](http://localhost:57700/csp/user/EnsPortal.BPLEditor.zen?BP=dc.POC.ProcessPOCFileRequest.bpl) 
+![screenshot](https://github.com/oliverwilms/bilder/blob/main/interoperability-test_BPL.png)
