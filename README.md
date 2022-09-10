@@ -47,7 +47,7 @@ USER>zpm "install interoperability-test"
 Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/intersystems-community/interoperability-test.git
+$ git clone https://github.com/oliverwilms/interoperability-test.git
 ```
 
 Open the terminal in this directory and run:
