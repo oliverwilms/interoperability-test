@@ -25,6 +25,14 @@ IncomingPOCFile Service reads a file and sends it to BPL process. Next step is s
 
 We are not connected to DMLSS during build time or during this unit testing. I decided to simulate the interaction with DMLSS. I created an Authorization process to provide the authorization. The Authorization request is sent to this Production due to System Default Settings which are shown on the screenshot below. It is received by Generic REST Service which sends a request to POC Auth BPL. POC Auth BPL simulates the response from DMLSS.
 
+## Problem encountered
+
+I need another REST Service and BPL to process the second request to DMLSS after the Authorization. Once I added a second service, requests from this Production did not route as expected. I could still reach the Services from Postman.
+
+## Solution
+
+Use a REST class without using Generic REST Services, at minimum for one request type (Api or Auth).
+
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/testint.PNG)
 
 ## Prerequisites
