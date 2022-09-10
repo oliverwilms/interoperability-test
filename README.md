@@ -41,24 +41,19 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
 Open IRIS Namespace with Interoperability Enabled.
 Open Terminal and call:
-USER>zpm "install interoperability-sample"
+USER>zpm "install interoperability-test"
 
 ## Installation: Docker
 Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/intersystems-community/iris-interoperability-template.git
+$ git clone https://github.com/intersystems-community/interoperability-test.git
 ```
 
 Open the terminal in this directory and run:
 
 ```
-$ docker-compose build
-```
-
-3. Run the IRIS container with your project:
-
-```
+DOCKER_BUILDKIT=1 sudo docker build --no-cache --progress=plain --tag testint .
 $ docker-compose up -d
 ```
 
