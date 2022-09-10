@@ -21,9 +21,9 @@ My team works on IRIS interoperability solution running on Red Hat OpenShift Kub
 We are working on POC interface. Below is a screenshot of a visual trace in Health Connect:
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/TracePOCinHC.PNG)
 
-IncomingPOCFile Service reads a file and sends it to BPL process. Next step is sending an Authorization request to an external system (DMLSS). After Auth request is approved, a response file can be sent to POCResponseFile operation.
+IncomingPOCFile Service reads a file and sends it to BPL process. Next step is sending an Authorization request to an external system (DMLSS). After Auth request is approved, another request is sent to DMLSS to retrieve data. Finally a stream is created and sent to POCResponseFile operation.
 
-We are not connected to DMLSS during build time. I decided to simulate the Authorization process. The Authorization request is sent to this Production due to System Default Settings which are shown on the screenshot below. It is received by Generic REST Service which sends a request to POC Auth BPL. POC Auth BPL simulates the response from DMLSS.
+We are not connected to DMLSS during build time or during this unit testing. I decided to simulate the interaction with DMLSS. I created an Authorization process to provide the authorization. The Authorization request is sent to this Production due to System Default Settings which are shown on the screenshot below. It is received by Generic REST Service which sends a request to POC Auth BPL. POC Auth BPL simulates the response from DMLSS.
 
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/testint.PNG)
 
