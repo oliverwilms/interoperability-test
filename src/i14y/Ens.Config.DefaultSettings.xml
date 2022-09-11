@@ -11,7 +11,7 @@
 <item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericOperation" setting="HTTPPort" value="52773"><Deployable>true</Deployable></item>
 <item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericOperation" setting="HTTPServer" value="127.0.0.1"><Deployable>true</Deployable></item>
 <item production="dc.Demo.Production" item="*" class="EnsLib.REST.GenericService" setting="Port" value="57700"><Deployable>true</Deployable></item>
-<item production="dc.Demo.Production" item="POCAuthRequestToDMLSS123" class="*" setting="URL" value="/test/api/alt/Auth/GetAuthToken/?CfgItem=Auth"><Deployable>true</Deployable></item>
-<item production="dc.Demo.Production" item="POCRequestToDMLSS123" class="*" setting="URL" value="test/api/alt/Api/PointOfCare/?CfgItem=Api"><Deployable>true</Deployable></item>
+<item production="dc.Demo.Production" item="POCAuthRequestToDMLSS123" class="*" setting="URL" value="/test/api/Auth/"><Deployable>true</Deployable></item>
+<item production="dc.Demo.Production" item="POCRequestToDMLSS123" class="*" setting="URL" value="/test/api/Api/"><Deployable>true</Deployable></item>
 </defaultSettings>
 </Document></Export>
