@@ -17,6 +17,7 @@
       <Resource Name="TestLookupTable.LUT"/>
       <Resource Name="dc.Demo.PKG"/>
       <Resource Name="dc.POC.PKG"/>
+      <Resource Name="dc.Reddit.PKG"/>
       <Resource Name="dc.rest.PKG"/>
       <CSPApplication
         Name="/web"
