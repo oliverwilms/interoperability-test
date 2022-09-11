@@ -22,7 +22,7 @@
         Name="/web"
         Directory="${cspdir}/test"
         Url="/test/api"
-        DispatchClass="EnsLib.REST.GenericService"
+        DispatchClass="dc.POC.REST"
         MatchRoles=":${dbrole}:%All"
         Recurse="1"
         ServeFiles="1"
