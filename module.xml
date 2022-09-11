@@ -15,9 +15,9 @@
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="Ens.Config.DefaultSettings.ESD"/>
       <Resource Name="TestLookupTable.LUT"/>
-      <Resource Name="dc.Reddit.PKG"/>
       <Resource Name="dc.Demo.PKG"/>
       <Resource Name="dc.POC.PKG"/>
+      <Resource Name="dc.rest.PKG"/>
       <CSPApplication
         Name="/web"
         Directory="${cspdir}/test"
