@@ -23,7 +23,7 @@
         Name="/web"
         Directory="${cspdir}/test"
         Url="/test/api"
-        DispatchClass="dc.POC.REST"
+        DispatchClass="dc.rest.GenericService"
         MatchRoles=":${dbrole}:%All"
         Recurse="1"
         ServeFiles="1"
