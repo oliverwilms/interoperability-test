@@ -1,0 +1,21 @@
+Class dc.POC.DTL.ApiReq Extends Ens.DataTransformDTL [ DependsOn = EnsLib.HTTP.GenericMessage ]
+{
+
+Parameter IGNOREMISSINGSOURCE = 1;
+
+Parameter REPORTERRORS = 1;
+
+Parameter TREATEMPTYREPEATINGFIELDASNULL = 0;
+
+XData DTL [ XMLNamespace = "http://www.intersystems.com/dtl" ]
+{
+<transform sourceClass='EnsLib.HTTP.GenericMessage' targetClass='EnsLib.HTTP.GenericMessage' create='new' language='objectscript' >
+<assign value='target.HTTPHeaders.SetAt("application/json;charset=UTF-8","CONTENT-TYPE")' property='tSC' action='set' />
+<assign value='##class(%GlobalCharacterStream).%New()' property='tStream' action='set' />
+<assign value='##class(dc.POC.ApiUtil).GetInternalCustomerCatalogDelta()' property='tDelta' action='set' />
+<assign value='tStream.Write(tDelta)' property='tSC' action='set' />
+<assign value='target.StreamSet(tStream)' property='tSC' action='set' />
+</transform>
+}
+
+}
