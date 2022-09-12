@@ -12,7 +12,7 @@ env:
   SERVICE:      interoperability-test
   DOMAIN_NAME:  interoperability-test.demo.community.intersystems.com
 
-  # Leave this section untouched
+# Leave this section untouched
   PROJECT_ID:   iris-community-demos
   CLUSTER_NAME: demo
   GITHUB_SHA:   ${{ github.sha }}
@@ -27,7 +27,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
- 
+
     - name: Setup Cloud SDK
       uses: google-github-actions/setup-gcloud@v0.2.0
       with:
@@ -39,8 +39,7 @@ jobs:
 
     - name: Build and Push image
       run: |
-        docker build -t ${GCR_LOCATION}/${PROJECT_ID}/${IMAGE_NAME}:${GITHUB_SHA} .
-        docker push ${GCR_LOCATION}/${PROJECT_ID}/${IMAGE_NAME}:${GITHUB_SHA}
+        docker buildx build -t ${GCR_LOCATION}/${PROJECT_ID}/${IMAGE_NAME}:${GITHUB_SHA} --push .
 
     - name: Deploy to Cloud Run
       run: |
