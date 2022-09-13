@@ -88,7 +88,7 @@ All PASSED
 ## How to Run interoperability-test
 
 Open the [production](https://interoperability-test.demo.community.intersystems.com/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) and start it.
-File Passthrough Service looks for a file in /irisdev/app/data/. If found, then file content is sent to POC File BPL.
+File Passthrough Service looks for a file in /usr/irissys/mgr/test. If found, then file content is sent to POC File BPL.
 If the process completes successfully, a response file will be sent to POC Response File Operation and we should find a file in /usr/irissys/mgr/output/.
 
 You can view the [BPL](https://interoperability-test.demo.community.intersystems.com/csp/user/EnsPortal.BPLEditor.zen?BP=dc.POC.ProcessPOCFileRequest.bpl) 
