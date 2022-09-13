@@ -135,6 +135,7 @@ Method CheckResults(ByRef Log As %String, New As %String) As %Status
 /// It's automatically invoked when parameter <parameter>IGNOREPRODUCTIONERRORS</parameter> = 1.
 Method CheckErrors() As %Status
 {
+	Set tSC = $$$OK
 	Do ..DebugTEST("CheckErrors")
 	// GetEventLog types are "error", "info", "infouser", "trace", "alert"
 	Set s = ..GetEventLog("error", "", ..BaseLogId, .err, .new) // Retrieve all records of type "Error"
