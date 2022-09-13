@@ -1,6 +1,17 @@
 Class dc.POC.ProcessPOCHelper
 {
 
+ClassMethod Code(
+	pString As %String,
+	pContext) As %Status
+{
+	Set ^DEBUG($I(^DEBUG)) = pContext
+	Set ^DEBUG($I(^DEBUG)) = pString
+	Set ^DEBUG($I(^DEBUG)) = $L(pString)
+	Set tSC = $$$OK
+	Quit tSC
+}
+
 /// <assign name="TransactionType" property="context.TransactionType" value="request.HTTPHeaders.GetAt(&quot;URL&quot;)" action="set" xpos='200' ypos='250' />
 ClassMethod GetTransactionType(pRequest As Ens.Request = "") As %String
 {
