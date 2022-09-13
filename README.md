@@ -16,7 +16,7 @@ DOCKER_BUILDKIT=1 sudo docker build --no-cache --progress=plain --tag testint .
 ```
 
 ## Online Demo
-You can find online demo here - [Production Configuration](https://interoperability-test.demo.community.intersystems.com/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) or [Management Portal](https://interoperability-test.demo.community.intersystems.com/csp/sys/UtilHome.csp) or [webterminal](https://interoperability-test.demo.community.intersystems.com/terminal/)
+You can find online demo here - [Production Configuration](https://interoperability-test.demo.community.intersystems.com/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) or [Management Portal](https://interoperability-test.demo.community.intersystems.com/csp/sys/UtilHome.csp) or [WebCommand](https://interoperability-test.demo.community.intersystems.com/csp/user/webcmd.csp)
 
 ## Why interoperability-test?
 
