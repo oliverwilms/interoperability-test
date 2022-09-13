@@ -70,6 +70,19 @@ sudo docker exec -it interoperability-test_iris_1 iris session iris
 zpm "test interoperability-test -only -v"
 ```
 
+If everything goes well, you will see output like this:
+```
+[interoperability-test] Test START
+
+...
+
+Use the following URL to view the result:
+http://1xx.1xx.2xx.xxx:57700/csp/sys/%25UnitTest.Portal.Indices.cls?Index=1&$NAMESPACE=USER
+All PASSED
+
+[interoperability-test] Test SUCCESS
+```
+
 ## How to Run interoperability-test
 
 Open the [production](http://localhost:57700/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) and start it.
