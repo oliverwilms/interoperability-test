@@ -3,6 +3,7 @@ Do ##class(Security.Users).UnExpireUserPasswords("*")
 
 zn "USER"
 ;do $System.OBJ.LoadDir("/home/irisowner/irisbuild/src","ck",,1)
-zpm "install webterminal"
+;zpm "install webterminal"
+zpm "install webcommand"
 zpm "load /home/irisowner/irisbuild/ -v":1:1
 halt
