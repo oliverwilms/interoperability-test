@@ -7,6 +7,8 @@
 
 Read my first [Article](https://community.intersystems.com/post/about-interoperability-test-app-unittesting-interfaces-productions)
 
+Watch my [YouTube video](https://youtu.be/LqyRVxpmxGY)
+
 ## Error encountered
 ```
 the --mount option requires BuildKit. Refer to https://docs.docker.com/go/buildkit/ to learn how to build images with BuildKit enabled
