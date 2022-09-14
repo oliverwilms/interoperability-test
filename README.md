@@ -22,8 +22,8 @@ You can find online demo here - [Production Configuration](https://interoperabil
 
 My team works on IRIS interoperability solution running on Red Hat OpenShift Kubernetes Container Platform. We are trying to implement CI/CD, but we are missing testing tool. We are making changes to our POC interfaces. I wanted to see what can be done with Unit Testing tools provided by InterSystems.
 
-We are working on POC interface. Below is a screenshot of a visual trace in Health Connect:
-![screenshot](https://github.com/oliverwilms/bilder/blob/main/TracePOCinHC.PNG)
+We are working on POC interface. Below is a screenshot of a visual trace captured in Online Demo:
+![screenshot](https://github.com/oliverwilms/bilder/blob/main/Capture_visual_trace.JPG)
 
 IncomingPOCFile Service reads a file and sends it to BPL process. Next step is sending an Authorization request to an external system (DMLSS). After Auth request is approved, another request is sent to DMLSS to retrieve data. Finally a stream is created and sent to POCResponseFile operation.
 
