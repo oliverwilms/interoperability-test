@@ -39,6 +39,10 @@ Use a REST class without using Generic REST Services, at minimum for one request
 
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/testint.PNG)
 
+## More details in Article
+
+[Read here](https://community.intersystems.com/post/routing-rest-messages-inside-interoperability-test)
+
 ## Prerequisites
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
 
