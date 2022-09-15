@@ -3,6 +3,10 @@
  [![Reliability Rating](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Finteroperability-test&metric=reliability_rating)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Finteroperability-test)
 # interoperability-test
 
+## InterSystems Developer Community Interoperability Contest 2022
+
+Please consider [voting](https://openexchange.intersystems.com/contest/25) if you are an active community member.
+
 ## About interoperability-test
 
 Read my first [Article](https://community.intersystems.com/post/about-interoperability-test-app-unittesting-interfaces-productions)
