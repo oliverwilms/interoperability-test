@@ -15,7 +15,6 @@
       "active": true,
       "links": {
         "Production": "http://localhost:${port}/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production"
-        
       }
     }
 
