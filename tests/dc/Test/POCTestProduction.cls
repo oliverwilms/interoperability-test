@@ -7,7 +7,9 @@ Parameter PRODUCTION = "dc.Demo.Production";
 /// If any errors appear in the Event Log during execution of the production, the test will fail.
 /// If errors are expected to happen, override this parameter. 
 /// You may also want to check them manually by overriding the method <method>CheckErrors</method>.
-Parameter IGNOREPRODUCTIONERRORS = 1;  // 1 because I want to execute method <method>CheckErrors</method>.
+Parameter IGNOREPRODUCTIONERRORS = 1;
+
+// 1 because I want to execute method <method>CheckErrors</method>.
 
 ClassMethod Go() As %Status
 {
@@ -75,7 +77,7 @@ Method OnBeforeProductionStart() As %Status
 		Set tSC = ..ChangeSetting(pProduction,pItem,pSettingName,pValue)
 	}
 	Set pFilename = "123_GetInternalCustomerCatalog_20220827095512345.csv"
-	Set pSourceDir = $ZU(12)_"data/"
+	Set pSourceDir = "/irisdev/app/data/"
 	Set pTargetDir = $ZU(12)_"test/"
 	Set tSC = ..CopyFile(pFilename,pSourceDir,pTargetDir)
 	Quit tSC
@@ -104,15 +106,15 @@ Method OnAfterProductionStart() As %Status
 		Set pIris = 0
 		Set ^myUnitTests(myUnitTest,pIris,"BaseLogId") = ..BaseLogId
 	}
-	Quit $$$OK
 	Set request = ##class(Ens.StringRequest).%New()
-	set request.StringValue="Hello Ensemble"
-	Set tSC = ..SendRequest( "Tutorial.ExampleOperation" ,request, 
-                                                       .response,1,40)
-	Do $$$AssertEquals(response.StringValue,"OK","Response should contain OK.")
-	Set request.StringValue=""
-	Set tSC = ..SendRequest( "Tutorial.ExampleOperation" ,request, 
-                                                        .response,1,40)
+	set request.StringValue="Hello Productions"
+	Set tSC = ..SendRequest( "Tutorial.ExampleOperation",request,.response,1,40)
+	#; Do $$$AssertEquals(response.StringValue,"OK","Response should contain OK.")
+	Set request2 = ##class(Ens.StringRequest).%New()
+	Set request2.StringValue=""
+	Set tSC = ..SendRequest( "Tutorial.ExampleOperation",request2,.response2,1,40)
+	#; Do $$$AssertEquals(response2.StringValue,"ERROR","Response should contain OK.")
+
 	Quit $$$OK
 }
 
@@ -128,7 +130,17 @@ Method OnAfterProductionStart() As %Status
 Method CheckResults(ByRef Log As %String, New As %String) As %Status
 {
 	Set tSC = $$$OK
-	Quit tSC
+	Set r = $$$AssertEquals($Get(New),2,"Should be 2 (found: "_+$Get(New)_")")
+
+	Set text = $Get(Log(1,"Text"))
+	Do $$$AssertEquals(text,"OK","Should be 'OK' (found: '"_text_"')")
+
+	Set text = $Get(Log(2,"Text"))
+	Do $$$AssertEquals(text,"ERROR","Should be 'ERROR' (found: '"_text_"')")
+
+	if 'r set tSC=..Error("Expected event log entries don't match")
+
+	Return tSC
 }
 
 /// Override this method if you are going to check errors with custom code.
@@ -147,7 +159,19 @@ Method CheckErrors() As %Status
 	//Set s2 = $$$AssertTrue(text[eText,"Should contain '"_eText_"'(found: '"_text_"')")
 	//Set tSC = ##class(Feeder.Test).UpdateMyProp("","myErrCount",$Get(new))
 	If 's1||'s2 Set tSC=..Error("Expected error entries don't match")
-	Quit tSC
+
+	 Set tSC = $$$OK
+	Set s = ..GetEventLog("error","","",.err,.new)
+
+	Set s1 = $$$AssertEquals(new,3,"Should be 3 new errors(found: "_+$Get(new)_")")
+
+	Set text = $Get(err(1,"Text"))
+	Set eText = "Test error case"
+	Set s2 = 
+		$$$AssertTrue(text[eText,"Should contain '"_eText_"'(found: '"_text_"')")
+
+	if 's1||'s2 set tSC=..Error("Expected error entries don't match")
+	Return tSC
 }
 
 }
